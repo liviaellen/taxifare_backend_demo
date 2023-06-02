@@ -24,7 +24,7 @@ def predict(pickup_datetime, pickup_longitude, pickup_latitude, dropoff_longitud
 
     X_new_clean=prep_data(X_new)
     if X_new_clean=="error input":
-        return {"error":"input error"}
+        return {"error":"input error,  pickup_latitude , dropoff_latitude between 40.5 & 40.9 pickup_longitude & dropoff_longitude between -74.3 & -73.7"}
     else:
         model=app.state.model
         pred=model.predict(X_new_clean)[0][0]
