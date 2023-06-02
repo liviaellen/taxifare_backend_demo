@@ -1,0 +1,6 @@
+pygeohash
+scikit-learn
+numpy
+pandas
+joblib
+uvicorn
