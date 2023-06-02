@@ -20,8 +20,16 @@ def predict(pickup_datetime, pickup_longitude, pickup_latitude, dropoff_longitud
     dropoff_latitude=[float(dropoff_latitude)],
     passenger_count=[int(passenger_count)],
     ))
+    print("shape size ", X_new.shape)
+
     X_new_clean=prep_data(X_new)
-    model=app.state.model
-    pred=model.predict(X_new_clean)[0]
-    print(pred)
-    return {"prediction":pred}
+    if X_new_clean=="error input":
+        return {"error":"input error"}
+    else:
+        model=app.state.model
+        pred=model.predict(X_new_clean)[0][0]
+        print(pred)
+        return {"prediction":float(pred)}
+
+
+# fast api can only return python built in data type

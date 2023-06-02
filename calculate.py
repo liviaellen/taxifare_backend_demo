@@ -197,12 +197,18 @@ def main_prep_data(X_input):
 
 
     final_preprocessor.fit(X)
+
     X_val=final_preprocessor.transform(X_input)
     return X_val
 
 
 def prep_data(X_new):
+
   X_new_clean=clean_data(X_new)
+  if X_new_clean.shape[0]==0:
+      return "error input"
+  print(X_new_clean)
+  print("shape in calculate:",X_new_clean.shape)
   X_new_clean=main_prep_data(X_new_clean)
   return X_new_clean
 
