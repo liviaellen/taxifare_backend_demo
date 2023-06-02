@@ -14,18 +14,14 @@ def home():
 def predict(pickup_datetime, pickup_longitude, pickup_latitude, dropoff_longitude, dropoff_latitude, passenger_count):
     X_new = pd.DataFrame(dict(
     pickup_datetime=[pd.Timestamp(pickup_datetime, tz='UTC')],
-    pickup_longitude=[pickup_latitude],
-    pickup_latitude=[dropoff_longitude],
-    dropoff_longitude=[dropoff_longitude],
-    dropoff_latitude=[dropoff_latitude],
-    passenger_count=[passenger_count],
+    pickup_longitude=[float(pickup_longitude)],
+    pickup_latitude=[float(pickup_latitude)],
+    dropoff_longitude=[float(dropoff_longitude)],
+    dropoff_latitude=[float(dropoff_latitude)],
+    passenger_count=[int(passenger_count)],
     ))
     X_new_clean=prep_data(X_new)
     model=app.state.model
     pred=model.predict(X_new_clean)[0]
     print(pred)
-
-
-
-    pred=0
     return {"prediction":pred}
